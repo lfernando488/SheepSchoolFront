@@ -1,0 +1,13 @@
+.area-chip{
+    font-size: .85em;
+    padding: 0 .6em;
+    min-height: 20px;
+}
+
+::ng-deep .mat-card-header-text {
+  margin: 8px 0 0 !important; // for example to remove the margin
+}
+
+.course-card{
+  cursor: pointer;
+}

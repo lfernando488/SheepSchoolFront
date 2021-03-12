@@ -1,0 +1,32 @@
+<section *ngIf="area">
+    <div class="container-fluid background-primary">
+        <div class="container p-1 pt-2">
+        <h2>{{area.name}}</h2>
+        <p>{{area.description}}</p>
+        </div>
+    </div>
+    <div>
+        <h3 class="container p-1" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="start start">Available courses: </h3>
+
+        <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="space-evenly">
+            <mat-card class="course-card mat-elevation-z4 mb-2" *ngFor="let course of area.courses" fxFlex="30" matRipple routerLink="{{course.permalink}}">
+              <mat-chip-list class="area-chip-list" aria-label="Course areas" fxFill>
+                <mat-chip class="area-chip" color="accent" selected *ngFor="let area of course.areas">{{area.name}}</mat-chip>
+              </mat-chip-list>
+              <div>
+              <mat-card-header fxLayout="column" fxLayoutAlign="space-between start">
+                <mat-card-title class="text-primary">{{course.title}}</mat-card-title>
+                <mat-card-subtitle>{{course.subtitle}}</mat-card-subtitle>
+                <p>{{course.shortDescription}}</p>
+              </mat-card-header>
+              <mat-card-content fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+                <div fxFlex="22"><h4 class="text-accent">Level</h4>{{course.courseLevel}}</div>
+                <div fxFlex="10"><h4 class="text-accent">Score</h4>{{course.courseScore}}</div>
+                <div fxFlex="50"><h4 class="text-accent">Instructors</h4><p *ngFor="let instructor of course.instructors">{{instructor.firstName}} {{instructor.lastName}}</p></div>
+              </mat-card-content>
+              </div>
+            </mat-card>
+          </div>
+
+    </div>
+</section>

@@ -1,0 +1,46 @@
+<section class="container p-1" fxLayout="row wrap" fxLayoutAlign="center center">
+    <h2 fxFill class="text-accent text-center">Editar perfil</h2>
+    <form fxFill fxFlex.gt-sm="45" fxLayout="row wrap" fxLayoutAlign="space-between center" 
+        [formGroup]="form">
+        <mat-form-field appearance="fill" fxFlex="35">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="firstName" name="firstName" value="firstName">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="60">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput formControlName="lastName" name="lastName" value="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="45">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" name="username" value="username">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="50">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phoneNumber" name="phoneNumber" value="phoneNumber">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" name="email" value="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100">
+            <mat-label>Link do portfólio</mat-label>
+            <input matInput formControlName="portfolioURL" name="portfolioURL" value="portfolioURL">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="50">
+            <mat-label>Sexo</mat-label>
+            <mat-select [(value)]="selectedGender" value="gender" formControlName="gender" name="gender">
+                <mat-option *ngFor="let g of genderOptions | keyvalue" [value]="g.key">{{g.value}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill"  fxFlex="45">
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput [matDatepicker]="birthdatepicker" [formControl]="date" formControlName="birthDate" name="birthDate" value="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="birthdatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthdatepicker></mat-datepicker>
+          </mat-form-field>
+          <div fxFill fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+              <button mat-flat-button (click)="onNoClick()">Cancelar</button>
+              <button mat-flat-button color="primary" (click)="onSubmit()">Salvar</button>
+          </div>
+    </form>
+</section>

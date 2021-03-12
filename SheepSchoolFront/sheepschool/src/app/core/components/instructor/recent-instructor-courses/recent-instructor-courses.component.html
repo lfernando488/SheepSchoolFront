@@ -1,0 +1,27 @@
+<div class="mt-1" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <h2 class="pt-1">Cursos de minha autoria</h2>
+    <button mat-stroked-button class="new-course-btn" routerLink="new-course"><mat-icon>add</mat-icon><span>Criar um novo curso</span></button>
+</div>
+<div *ngIf="courses.length > 0; else noCourses" class="mt-1 mb-2" fxLayout="column" fxLayout.gt-xs="row wrap"
+    fxLayoutAlign="start stretch" fxLayoutGap="10px">
+    <mat-card fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="23" *ngFor="let course of courses">
+        <mat-card-header>
+            <mat-card-title>{{course.title}}</mat-card-title>
+            <mat-card-subtitle>{{course.subtitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+            <button mat-icon-button color="primary" aria-label="Editar">
+                <mat-icon matTooltip="Editar curso">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" aria-label="Acessar como estudante">
+                <mat-icon matTooltip="Acessar como estudante">preview</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div class="mb-1" fxLayout="row" fxLayoutAlign="end">
+    <button mat-button class="new-course-btn"><span>Todos os meus cursos</span><mat-icon>arrow_right</mat-icon></button>
+</div>
+<ng-template #noCourses>
+    <h2 class="mat-display-1 text-center pt-1">Você ainda não criou nenhum curso...</h2>
+</ng-template>

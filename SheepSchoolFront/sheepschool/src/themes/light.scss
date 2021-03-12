@@ -1,0 +1,352 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+$light-sheep: (
+    50 : #efebe6,
+    100 : #d7cdc1,
+    200 : #bdac98,
+    300 : #a28b6e,
+    400 : #8e724f,
+    500 : #7a5930,
+    600 : #72512b,
+    700 : #674824,
+    800 : #5d3e1e,
+    900 : #4a2e13,
+    A100 : #ffbc85,
+    A200 : #ffa052,
+    A400 : #ff841f,
+    A700 : #ff7606,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$light-primary: (
+    50 : #e5f1f7,
+    100 : #bedceb,
+    200 : #92c4de,
+    300 : #66acd1,
+    400 : #469bc7,
+    500 : #2589bd,
+    600 : #2181b7,
+    700 : #1b76ae,
+    800 : #166ca6,
+    900 : #0d5998,
+    A100 : #c8e4ff,
+    A200 : #95caff,
+    A400 : #62b1ff,
+    A700 : #48a4ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-secondary: (
+    50 : #e5e3f0,
+    100 : #bebad8,
+    200 : #938cbf,
+    300 : #685da5,
+    400 : #473b91,
+    500 : #27187e,
+    600 : #231576,
+    700 : #1d116b,
+    800 : #170e61,
+    900 : #0e084e,
+    A100 : #8983ff,
+    A200 : #5950ff,
+    A400 : #281dff,
+    A700 : #1003ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$light-warn: (
+    50 : #fff9e9,
+    100 : #ffefc8,
+    200 : #ffe5a3,
+    300 : #ffdb7e,
+    400 : #ffd363,
+    500 : #ffcb47,
+    600 : #ffc640,
+    700 : #ffbe37,
+    800 : #ffb82f,
+    900 : #ffac20,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffeccf,
+    A700 : #ffe2b6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-danger: (
+    50 : #f9e0e0,
+    100 : #f0b3b3,
+    200 : #e68080,
+    300 : #db4d4d,
+    400 : #d42626,
+    500 : #cc0000,
+    600 : #c70000,
+    700 : #c00000,
+    800 : #b90000,
+    900 : #ad0000,
+    A100 : #ffd7d7,
+    A200 : #ffa4a4,
+    A400 : #ff7171,
+    A700 : #ff5858,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-disabled: (
+    50 : #f0f0f0,
+    100 : #dadada,
+    200 : #c1c1c1,
+    300 : #a8a8a8,
+    400 : #959595,
+    500 : #828282,
+    600 : #7a7a7a,
+    700 : #6f6f6f,
+    800 : #656565,
+    900 : #525252,
+    A100 : #f8c3c3,
+    A200 : #f39595,
+    A400 : #ff5757,
+    A700 : #ff3d3d,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$light-success: (
+    50 : #edf5ea,
+    100 : #d2e5ca,
+    200 : #b5d4a7,
+    300 : #97c284,
+    400 : #80b569,
+    500 : #6aa84f,
+    600 : #62a048,
+    700 : #57973f,
+    800 : #4d8d36,
+    900 : #3c7d26,
+    A100 : #cdffbe,
+    A200 : #a6ff8b,
+    A400 : #7fff58,
+    A700 : #6cff3f,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-accent: (
+    50 : #fae2ef,
+    100 : #f2b6d7,
+    200 : #e986bd,
+    300 : #e055a3,
+    400 : #da308f,
+    500 : #d30c7b,
+    600 : #ce0a73,
+    700 : #c80868,
+    800 : #c2065e,
+    900 : #b7034b,
+    A100 : #ffe0eb,
+    A200 : #ffadc9,
+    A400 : #ff7aa7,
+    A700 : #ff6197,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$sheep-school-primary: mat-palette($light-primary);
+$sheep-school-secondary: mat-palette($light-secondary);
+$sheep-school-accent:  mat-palette($light-accent);
+$sheep-school-sheep: mat-palette($light-sheep, 50, 100, 200);
+
+// The warn palette is optional (defaults to red).
+$sheep-school-warn:     mat-palette($light-warn);
+$sheep-school-danger:    mat-palette($light-danger);
+$sheep-school-success:    mat-palette($light-success);
+$sheep-school-disabled:    mat-palette($light-disabled);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$sheep-school-theme: mat-light-theme((
+  color: (
+    primary: $sheep-school-primary,
+    secondary: $sheep-school-primary,
+    accent: $sheep-school-accent,
+    warn: $sheep-school-warn,
+    danger: $sheep-school-danger,
+    success: $sheep-school-success
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($sheep-school-theme);
+
+.text-primary {
+    color: mat-color($sheep-school-primary);
+}
+
+.text-secondary {
+    color: mat-color($sheep-school-secondary);
+}
+
+.text-accent {
+    color: mat-color($sheep-school-accent);
+}
+
+.text-warn {
+    color: mat-color($sheep-school-warn);
+}
+
+.text-danger {
+  color: mat-color($sheep-school-danger);
+}
+
+.text-success {
+  color: mat-color($sheep-school-success);
+}
+
+.text-disabled {
+  color: mat-color($sheep-school-disabled);
+}
+
+.background-primary {
+    background-color: mat-color($sheep-school-primary);
+    color: #FFF;
+}
+.background-sheep {
+  background-color: mat-color($sheep-school-sheep);
+}
+
+.background-secondary {
+  background-color: mat-color($sheep-school-secondary);
+  color: #FFF;
+}
+
+.background-accent {
+    background-color: mat-color($sheep-school-accent);
+    color: #FFF;
+  }

@@ -1,0 +1,30 @@
+<div *ngIf="loaded" nclass="logged-user" fxLayout="row"
+        fxLayoutAlign="space-between center">
+        <button mat-stroked-button color="accent" *ngIf="isAdmin" routerLink="/admin" routerLinkActive="active">Admin</button>
+        <div class="user-info ml-1" fxLayout="column" fxLayoutAlign="center">
+          <span class="text-primary"><strong>@{{student.username}}</strong></span>
+          <span *ngIf="!isInstructor; else elseInstructor">Pontos: {{student.score}}</span>
+          <ng-template #elseInstructor><span>Instrutor</span></ng-template>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/course-subscriptions">
+            <mat-icon>library_books</mat-icon>
+            <span>Cursos em que me inscrevi</span>
+          </button>
+          <button mat-menu-item (click)="openEditProfileDialog(student)">
+            <mat-icon>person</mat-icon>
+            <span>Editar perfil</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>help</mat-icon>
+            <span>Me ajudem</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>close</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>

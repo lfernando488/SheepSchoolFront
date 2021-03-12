@@ -1,0 +1,11 @@
+::ng-deep .mat-badge-content{
+    width: auto !important;
+    padding: 0 1em;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+::ng-deep .mat-card-header-text {
+    margin: 8px 0 0 !important; // for example to remove the margin
+  }

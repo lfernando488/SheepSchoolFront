@@ -1,0 +1,13 @@
+<div *ngIf="courseSubscriptions.length > 0; else noSubscriptions" class="mt-2 mb-2" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="start" fxLayoutGap="10px">
+    <h2 fxFill class="text-primary pt-1">Inscrições recentes</h2>
+    <mat-card fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex="23" *ngFor="let cs of courseSubscriptions">
+        <mat-card-header matBadge="{{cs.courseSubscriptionStatus}}" matBadgeColor="warn" matBadgeSize="small">
+            <mat-card-title>{{cs.courseTitle}}</mat-card-title>
+            <mat-card-subtitle>{{cs.courseSubtitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <p fxFlexAlign="end">Pontos obtidos: <strong class="text-success">{{cs.courseSubscriptionScore}}</strong></p>
+    </mat-card>
+</div>
+<ng-template #noSubscriptions>
+    <h2 class="mat-display-1 text-center text-accent pt-1">Você ainda não se inscreveu em nenhum curso. Que vacilo!</h2>
+</ng-template>

@@ -1,0 +1,64 @@
+<section *ngIf="course">
+    <div class="container-fluid background-primary">
+        <div class="container p-1 pt-2">
+            <mat-chip-list aria-label="Course areas" fxFill>
+                <mat-chip color="accent" selected *ngFor="let area of course.areas">{{area.name}}</mat-chip>
+            </mat-chip-list>
+            <h2 class="pt-1">{{course.title}} – {{course.subtitle}}</h2>
+            <p>{{course.shortDescription}}</p>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="center start" fxLayoutAlign.gt-sm="start center" fxLayoutGap.gt-sm="100px">
+                <p>Nível: <strong class="text-warn">{{course.courseLevel}}</strong></p>
+                <p> Ao concluir você ganhará <strong class="text-warn">{{course.courseScore}} pontos</strong>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container p-1" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign.gt-xs="start start">
+        <div class="course-general-info mb-2" fxFill fxFlex.gt-xs="65" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between center">
+            <div fxFlex="60" class="mb-2" fxLayout="row wrap" fxLayoutGap="20px">
+                <h3 fxFill class="text-primary">Instrutor<span *ngIf="course.instructors.length > 1">es</span></h3>
+                <mat-card class="instructor-box mat-small mb-1" *ngFor="let instructor of course.instructors">
+                    {{instructor.firstName}} {{instructor.lastName}}
+                </mat-card>
+            </div>
+            <div fxFill fxFlex.gt-xs="35" class="text-primary mat-small mb-1" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">event_note</mat-icon>
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <span><strong>Criado em: </strong>{{course.createdAt | localDateTime }}</span>
+                    <span *ngIf="course.updatedAt"><strong>Atualizado em: </strong>{{course.updatedAt | localDateTime }}</span>
+                </div>
+            </div>
+            <p fxFill>{{course.longDescription}}</p>
+        </div>
+        <div class="course-acions" fxFill fxFlex.gt-sm="30">
+            <p class="text-danger">Aqui devemos implementar um componente que varia de acordo com o status de login.</p>
+        </div>
+        <div class="course-secondary-info" fxFill fxFlex.gt-sm="65">
+            <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="space-between start">
+                <div fxFlex.gt-sm="30">
+                    <h3 class="text-primary">Você vai aprender...</h3>
+                    <ul>
+                        <li *ngFor="let willLearn of course.willLearn">{{willLearn}}</li>
+                    </ul>
+                </div>
+                <div fxFlex.gt-sm="30">
+                    <h3 class="text-primary">Você não vai aprender...</h3>
+                    <ul>
+                        <li *ngFor="let wontLearn of course.wontLearn">{{wontLearn}}</li>
+                    </ul>
+                </div>
+                <div fxFlex.gt-sm="30">
+                    <h3 class="text-primary">Requisitos</h3>
+                    <ul>
+                        <li *ngFor="let requirement of course.requirements">{{requirement}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-primary">Aulas</h3>
+                <ol>
+                    <li *ngFor="let lesson of course.lessons">{{lesson.title}}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>

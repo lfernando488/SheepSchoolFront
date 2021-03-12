@@ -1,0 +1,283 @@
+<div class="container">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h2 class="pt-1 text-secondary">Novo curso</h2>
+        <div fxLayoutGap="10px">
+            <button class="action-icon-button" mat-raised-button color="warn">
+                <mat-icon>delete_forever</mat-icon>Descartar
+            </button>
+            <button class="action-icon-button" mat-raised-button color="primary" (click)="onSaveNewCourse()">
+                <mat-icon>save</mat-icon>Salvar
+            </button>
+        </div>
+    </div>
+    <mat-horizontal-stepper #stepper>
+
+
+
+
+        <!-- Step 1 - Dados básicos do curso -->
+        <mat-step [stepControl]="newCourseForm1" errorMessage="Name is required.">
+            <form [formGroup]="newCourseForm1" fxLayout="row wrap" fxLayoutAlign="space-between start">
+                <div class="mb-2" fxLayout="column" fxLayoutAlign="center" fxFill fxFlex.gt-sm="48">
+                    <ng-template matStepLabel>Dados básicos do curso</ng-template>
+                    <div fxFill fxLayout="column" fxLayoutGap="30px" class="mt-1">
+                        <mat-form-field fxFill appearance="outline">
+                            <mat-label>Título</mat-label>
+                            <input matInput placeholder="Digite o título do curso" formControlName="title" required>
+                            <mat-hint align="start">O título deve conter <strong>apenas</strong> o nome do assunto e/ou
+                                da(s) tecnologia(s) ensinado(s).</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field fxFill appearance="outline">
+                            <mat-label>Subtítulo</mat-label>
+                            <input matInput placeholder="Digite o subtítulo do curso" formControlName="subtitle"
+                                required>
+                            <mat-hint align="start">O subtítulo deve resumir em uma frase o que é ensinado no curso.
+                                Evite gerúndios.</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field fxFill appearance="outline">
+                            <mat-label>Breve descrição</mat-label>
+                            <textarea matInput #shortDesciptionMessage maxlength="256"
+                                placeholder="Conte um pouco sobre as qualidades de seu curso..."
+                                formControlName="shortDescription" required></textarea>
+                            <mat-hint align="start"><strong>Parágrafo que é exibido junto à listagem de cursos.</strong>
+                            </mat-hint>
+                            <mat-hint align="end">{{shortDesciptionMessage.value.length}} / 256</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center" fxFill fxFlex.gt-sm="48" class="mt-1">
+                    <div fxFill fxLayout="row" fxLayoutAlign="space-between start">
+                        <div fxFlex="48" fxLayout="column" fxLayoutAlign="center start">
+                            <h4>Nível de dificuldade: <strong class="text-primary">{{courseLevelLabel}}</strong></h4>
+                            <mat-slider fxFill min="1" max="5" step="1" tickInterval="1" thumbLabel
+                                (input)="onCourseLevelSliderChange($event)" formControlName="courseLevel"></mat-slider>
+                            <mat-hint class="mt-2" align="start"><strong>Selecione um dos cinco níveis de dificuldade
+                                    para seu curso.</strong></mat-hint>
+                        </div>
+                        <div fxFlex="48" fxLayout="column" fxLayoutAlign="center start">
+                            <h4>Pontos do curso: <strong class="text-primary">{{courseScoreLabel}}</strong></h4>
+                            <mat-slider fxFill min="50" max="300" step="25" tickInterval="25" thumbLabel
+                                (input)="onCourseScoreSliderChange($event)" formControlName="courseScore"></mat-slider>
+                            <mat-hint class="mt-2" align="start"><strong>Avalie a extensão de seu curso e atribua a pontuação que o estudante obterá ao concluir.</strong></mat-hint>
+                        </div>
+                    </div>
+                    <h3 class="pt-2 text-primary">Áreas</h3>
+                    <p>Selecione as áreas do conhecimento nas quais seu curso se enquadra. Caso ela não exista, contate a administração.</p>
+                    <mat-chip-list multiple id="AreasChipList" [selectable]="true" fxFill fxLayout="row wrap"
+                        fxLayoutAlign="start start" fxLayoutGap="10px">
+                        <mat-chip class="new-course-area-chip" *ngFor="let area of areas" [selected]="selectedAreas.includes(area.id)"
+                            (click)="changeSelectedAreas(area)" color="accent">
+                            {{area.name}}
+                        </mat-chip>
+                    </mat-chip-list>
+
+
+
+
+
+
+                </div>
+                <div class="mt-2" fxFill fxLayout="row wrap" fxLayoutAlign="center center">
+                    <div class="mt-2" fxFill fxFlex.gt-sm="50" fxLayout="row wrap" fxLayoutAlign="center center">
+                        <div fxFill fxLayoutAlign="end center" fxLayoutGap="10px">
+                            <button class="action-icon-button" mat-raised-button matStepperNext>
+                                <mat-icon>arrow_right</mat-icon>Próximo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+        <!-- Step 2 – Informações detalhadas -->
+        <mat-step [stepControl]="newCourseForm2" errorMessage="....................">
+            <form [formGroup]="newCourseForm2" fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+                <ng-template matStepLabel>Informações detalhadas</ng-template>
+                <mat-form-field class="mb-2" fxFill fxFlex.gt-sm="50" appearance="outline" class="mt-1">
+                    <mat-label>Descrição completa</mat-label>
+                    <textarea class="long-description-textarea" matInput #longDesciptionMessage maxlength="5000"
+                        placeholder="Aqui você deve inserir um resumo de seu curso. Não se preocupe se não você ainda não tiver a ideia completa desse texto agora, você pode salvar suas edições e inserí-lo depois."
+                        formControlName="longDescription" required></textarea>
+                    <mat-hint align="start">Procure explicar detalhadamente o que será explicado no curso. Tente seguir
+                        a ordem das aulas e finalizar seu texto com o aprendizado que será obtido.
+                    </mat-hint>
+                    <mat-hint align="end">{{longDesciptionMessage.value.length}} / 5000</mat-hint>
+                </mat-form-field>
+                <div fxFill fxFlex.gt-sm="40" class="mt-2">
+                    <h3 class="text-primary">Requisitos</h3>
+                    <p>Adicione de 3 a 12 requisitos para que seja viável a realização de seu curso.</p>
+                    <p class="mat-small">Ex. "Conceitos básicos de lógica de programação"</p>
+                    <ng-container formArrayName="requirements"
+                        *ngFor="let requirement of requirements.controls; index as i">
+                        <div fxLayout="column" fxLayoutAlign="start center">
+                            <div fxFill fxFlex="50px" class="list-form-field" fxLayout="row"
+                                fxLayoutAlign="start center" fxLayoutGap="10px">
+                                <mat-form-field class="mt-1" fxFlex="80" appearance="outline">
+                                    <input fxFlex="60" type="text" matInput placeholder="Digite o requisito" [formControlName]="i">
+                                </mat-form-field>
+                                <button mat-icon-button aria-label="Remover" color="warn"
+                                    (click)="removeFormControl(requirements, i)">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button mat-stroked-button color="primary" class="action-icon-button"
+                        aria-label="Adicionar requisito" (click)="addFormControl(requirements)">
+                        <mat-icon>add</mat-icon>Adicionar requisito
+                    </button>
+                </div>
+                <div fxFill fxFlex.gt-sm="40" class="mt-2">
+                    <h3 class="text-primary">O que o estudante aprenderá?</h3>
+                    <p>Adicione de 3 a 12 conhecimentos que serão compartilhados em seu curso.</p>
+                    <p class="mat-small">Ex. "Boas práticas na construção de uma página HTML"</p>
+                    <ng-container formArrayName="willLearn" *ngFor="let will of willLearn.controls; index as i">
+                        <div fxLayout="column" fxLayoutAlign="start center">
+                            <div fxFill fxFlex="50px" class="list-form-field" fxLayout="row"
+                                fxLayoutAlign="start center" fxLayoutGap="10px">
+                                <mat-form-field class="mt-1" fxFlex="80" appearance="outline">
+                                    <input fxFlex="60" type="text" matInput placeholder="Conhecimento compatilhado" [formControlName]="i">
+                                </mat-form-field>
+                                <button mat-icon-button aria-label="Remover" color="warn"
+                                    (click)="removeFormControl(willLearn, i)">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button mat-stroked-button color="primary" class="action-icon-button"
+                        aria-label="Adicionar conhecimento" (click)="addFormControl(willLearn)">
+                        <mat-icon>add</mat-icon>Adicionar conhecimento
+                    </button>
+                </div>
+                <div fxFill fxFlex.gt-sm="40" class="mt-2">
+                    <h3 class="text-primary">O que o estudante <strong class="text-accent">não</strong> aprenderá?</h3>
+                    <p>Adicione de 3 a 12 conhecimentos que não serão abordados em seu curso e que possuam certa
+                        relação.</p>
+                    <p class="mat-small">Ex. Em um curso de HTML – "Teoria das cores"</p>
+                    <ng-container formArrayName="wontLearn" *ngFor="let will of wontLearn.controls; index as i">
+                        <div fxLayout="column" fxLayoutAlign="start center">
+                            <div fxFill fxFlex="50px" class="list-form-field" fxLayout="row"
+                                fxLayoutAlign="start center" fxLayoutGap="10px">
+                                <mat-form-field class="mt-1" fxFlex="80" appearance="outline">
+                                    <input fxFlex="60" type="text" matInput placeholder="Conhecimento compatilhado" [formControlName]="i">
+                                </mat-form-field>
+                                <button mat-icon-button aria-label="Remover" color="warn"
+                                    (click)="removeFormControl(wontLearn, i)">
+                                    <mat-icon>delete_forever</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button mat-stroked-button color="primary" class="action-icon-button"
+                        aria-label="Adicionar conhecimento" (click)="addFormControl(wontLearn)">
+                        <mat-icon>add</mat-icon>Adicionar assunto
+                    </button>
+                </div>
+                <div class="mt-2" fxFill fxFlex.gt-sm="50" fxLayout="row wrap" fxLayoutAlign="center center">
+                    <div fxFill fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                        <button class="action-icon-button" mat-raised-button matStepperPrevious>
+                            <mat-icon>arrow_left</mat-icon>Anterior
+                        </button>
+                        <button class="action-icon-button" mat-raised-button matStepperNext>
+                            <mat-icon>arrow_right</mat-icon>Próximo
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+        <!-- Step 3 - Ajustes complementares -->
+        <mat-step>
+            <ng-template matStepLabel>Ajustes complementares</ng-template>
+            <div class="mt-1" fxFill fxLayout="row wrap" fxLayoutAlign="center center">
+                <div fxFlex.gt-sm="40">
+                    <h3 class="text-primary">Deseja convidar co-autores?</h3>
+                    <p>Você pode convidar outros autores da plataforma para que produzam o curso junto com você. Os
+                        instrutores autores podem participar da elaboração do curso e não, necessariamente, participar
+                        das
+                        aulas.</p>
+                    <p>Caso você deseje adicionar um instrutor que ainda não está cadastrado, entre em contato com a
+                        administração.</p>
+                    <table fxFill mat-table multiTemplateDataRows [dataSource]="instructors" matSort
+                        matSortActive="firstName" matSortDisableClear matSortDirection="asc">
+                        <!-- Coluna FirstNaem -->
+                        <ng-container matColumnDef="firstName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Nome</th>
+                            <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+                        </ng-container>
+
+                        <!-- Coluna LastName em -->
+                        <ng-container matColumnDef="lastName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Sobrenome</th>
+                            <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+                        </ng-container>
+
+                        <!-- Coluna Select em -->
+                        <ng-container matColumnDef="select">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <mat-checkbox (change)="$event ? instructorsMasterToggle() : null"
+                                    [checked]="instructorsSelection.hasValue() && instructorsIsAllSelected()"
+                                    [indeterminate]="instructorsSelection.hasValue() && !instructorsIsAllSelected()"
+                                    [aria-label]="instructorCheckboxLabel()">
+                                </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? instructorsSelection.toggle(row) : null"
+                                    [checked]="instructorsSelection.isSelected(row)"
+                                    [aria-label]="instructorCheckboxLabel(row)">
+                                </mat-checkbox>
+
+
+
+
+
+
+
+
+
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedInstructorsColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedInstructorsColumns;"></tr>
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="5">Nenhum instrutor.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-2" fxFill fxLayout="row wrap" fxLayoutAlign="center center">
+                <div class="mt-2" fxFill fxFlex.gt-sm="50" fxLayout="row wrap" fxLayoutAlign="center center">
+                    <div fxFill fxLayoutAlign="start center" fxLayoutGap="10px">
+                        <button class="action-icon-button" mat-raised-button matStepperPrevious>
+                            <mat-icon>arrow_left</mat-icon>Anterior
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+
+
+
+
+
+    </mat-horizontal-stepper>
+    <div class="my-1" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button class="action-icon-button" mat-raised-button color="warn">
+            <mat-icon>delete_forever</mat-icon>Descartar
+        </button>
+        <button class="action-icon-button" mat-raised-button color="primary" (click)="onSaveNewCourse()">
+            <mat-icon>save</mat-icon>Salvar
+        </button>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container-fluid background-secondary" *ngIf="isInstructor">
+    <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+        <recent-instructor-courses fxFill></recent-instructor-courses>
+    </div>
+</div>
+<div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+    <recent-course-subscriptions fxFill></recent-course-subscriptions>
+</div>
+<div class="container" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    <courses fxFill fxFlex.gt-sm="60"></courses>
+    <mat-card class="mt-2" fxFill fxFlex.gt-sm="35">Aqui a gente vai colocar um box com pontuação...</mat-card>
+</div>

@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+    <div>
+      <a mat-button routerLink="">
+        <h1>e-learning</h1>
+      </a>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <a mat-button routerLink="/areas" routerLinkActive="active">Areas</a>
+      <a mat-button routerLink="/courses" routerLinkActive="active">Courses</a>
+      <nav-logged *ngIf="isConnected"></nav-logged>
+    </div>
+  </div>
+</mat-toolbar>

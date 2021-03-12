@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Eita, aconteceu um erro...</h1>
+<div mat-dialog-content>
+	<p *ngIf="data.status">Código de status: <strong>{{data.status}}</strong></p>
+	<p class="error-message">
+		{{data?.message}}
+	</p>
+</div>
+<mat-dialog-actions  fxLayoutAlign="flex-end center">
+	<button mat-raised-button mat-dialog-close color="primary"><mat-icon>close</mat-icon><span>OK</span></button>
+</mat-dialog-actions>
